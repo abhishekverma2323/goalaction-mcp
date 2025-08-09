@@ -7,6 +7,16 @@ from fastapi.responses import FileResponse
 import os
 
 app = FastAPI()
+from fastapi.middleware.cors import CORSMiddleware
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # sab origins allow kar raha hun, security thodi kam ho sakti hai, lekin hackathon ke liye theek hai
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 
 # Ab ye keys environment variables se aayengi
 OPENWEATHER_KEY = os.getenv("OPENWEATHER_KEY", "e68520eebb703f9f4031cc028428c420")  # tera weather key
