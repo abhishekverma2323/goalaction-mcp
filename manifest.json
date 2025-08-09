@@ -4,5 +4,33 @@
   "description": "An AI-powered MCP server that turns any goal into actionable steps with helpful resource links.",
   "url": "https://goalaction-mcp.onrender.com",
   "contact_email": "abhishek@example.com",
-  "tags": ["goal", "planner", "AI", "MCP", "hackathon"]
+  "tags": ["goal", "planner", "AI", "MCP", "hackathon"],
+  "authentication": {
+    "type": "none"
+  },
+  "tools": [
+    {
+      "name": "Plan Goal",
+      "description": "Generates actionable plan steps based on the user goal",
+      "method": "POST",
+      "endpoint": "/plan",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "goal": {
+            "type": "string",
+            "description": "The goal or task to be planned"
+          },
+          "locale": {
+            "type": "string",
+            "description": "Optional locale for regional customization"
+          }
+        },
+        "required": ["goal"]
+      },
+      "output_schema": {
+        "type": "object"
+      }
+    }
+  ]
 }
