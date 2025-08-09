@@ -6,8 +6,7 @@ from urllib.parse import quote_plus
 from fastapi.responses import FileResponse
 import os
 from fastapi import Response
-
-
+from fastapi import FastAPI, Header, HTTPException
 
 app = FastAPI()
 from fastapi.middleware.cors import CORSMiddleware
@@ -21,6 +20,7 @@ app.add_middleware(
 )
 
 
+        
 # Ab ye keys environment variables se aayengi
 OPENWEATHER_KEY = os.getenv("OPENWEATHER_KEY", "e68520eebb703f9f4031cc028428c420")  # tera weather key
 NEWS_API_KEY = os.getenv("NEWS_API_KEY", "f5b16d735a2f4d1fa36bcd035984106d")  # agar news API use karna ho
@@ -29,6 +29,12 @@ class GoalInput(BaseModel):
     goal: str
     locale: str = "IN"
     
+BEARER_TOKEN = "mySuperSecretBearerToken123!"
+@app.post("/plan")
+def create_plan(data: GoalInput, authorization: str = Header(None)):
+    if authorization != f"Bearer {BEARER_TOKEN}":
+        raise HTTPException(status_code=401, detail="Unauthorized")
+        
 @app.options("/{full_path:path}")
 async def options_handler(full_path: str):
    return Response(status_code=204)
