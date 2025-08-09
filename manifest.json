@@ -1,11 +1,8 @@
 {
+  "schema_version": "1.0",
   "name": "GoalAction",
-  "description": "Turns any goal into an actionable AI plan with instant links.",
-  "endpoints": [
-    {
-      "name": "create_plan",
-      "method": "POST",
-      "path": "/plan"
-    }
-  ]
+  "description": "An AI-powered MCP server that turns any goal into actionable steps with helpful resource links.",
+  "url": "https://goalaction-mcp.onrender.com",
+  "contact_email": "abhishek@example.com",
+  "tags": ["goal", "planner", "AI", "MCP", "hackathon"]
 }
