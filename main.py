@@ -3,6 +3,8 @@ import requests
 from fastapi import FastAPI
 from pydantic import BaseModel
 from urllib.parse import quote_plus
+from fastapi.responses import FileResponse
+import os
 
 app = FastAPI()
 
@@ -13,6 +15,11 @@ NEWS_API_KEY = os.getenv("NEWS_API_KEY", "f5b16d735a2f4d1fa36bcd035984106d")  # 
 class GoalInput(BaseModel):
     goal: str
     locale: str = "IN"
+
+@app.get("/manifest.json")
+def get_manifest():
+    manifest_path = os.path.join(os.path.dirname(__file__), "manifest.json")
+    return FileResponse(manifest_path)
 
 @app.get("/")
 def read_root():
