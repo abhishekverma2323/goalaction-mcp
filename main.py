@@ -3,6 +3,11 @@ from pydantic import BaseModel
 
 app = FastAPI()
 
+# Root endpoint
+@app.get("/")
+def read_root():
+    return {"message": "GoalAction MCP Server is running!"}
+
 class GoalInput(BaseModel):
     goal: str
 
