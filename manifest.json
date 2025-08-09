@@ -1,0 +1,11 @@
+{
+  "name": "GoalAction",
+  "description": "Turns any goal into an actionable AI plan with instant links.",
+  "endpoints": [
+    {
+      "name": "create_plan",
+      "method": "POST",
+      "path": "/plan"
+    }
+  ]
+}
