@@ -5,6 +5,9 @@ from pydantic import BaseModel
 from urllib.parse import quote_plus
 from fastapi.responses import FileResponse
 import os
+from fastapi import Response
+
+
 
 app = FastAPI()
 from fastapi.middleware.cors import CORSMiddleware
@@ -25,6 +28,10 @@ NEWS_API_KEY = os.getenv("NEWS_API_KEY", "f5b16d735a2f4d1fa36bcd035984106d")  # 
 class GoalInput(BaseModel):
     goal: str
     locale: str = "IN"
+    
+@app.options("/{full_path:path}")
+async def options_handler(full_path: str):
+   return Response(status_code=204)
 
 @app.get("/manifest.json")
 def get_manifest():
